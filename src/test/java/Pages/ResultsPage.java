@@ -16,7 +16,7 @@ public class ResultsPage {
     private AndroidDriver<AndroidElement> driver;
     private FluentWait<MobileDriver> wait;
 
-    public ResultsPage(AndroidDriver driver){
+    public ResultsPage(AndroidDriver driver) {
         this.driver = driver;
         this.wait = new FluentWait<>((MobileDriver) driver)
                 .pollingEvery(Duration.ofMillis(50))
@@ -25,16 +25,16 @@ public class ResultsPage {
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NullPointerException.class)
                 .ignoring(ClassCastException.class)
-        ;;
+        ;
     }
 
-    private By results = new MobileBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"pl.otomoto:id/recyclerView\")");
+    private static final By results = new MobileBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"pl.otomoto:id/recyclerView\")");
 
-    public boolean isEmpty(){
-        try{
+    public boolean isEmpty() {
+        try {
             wait.until(ExpectedConditions.presenceOfElementLocated(results));
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }

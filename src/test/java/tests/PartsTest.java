@@ -1,16 +1,12 @@
 package tests;
 
+import Pages.MainPage;
+import Pages.PartsPage;
 import Pages.ResultsPage;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -18,11 +14,6 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
-
-import Pages.MainPage;
-import Pages.PartsPage;
-import Pages.ResultsPage;
 
 public class PartsTest {
 
@@ -71,9 +62,6 @@ public class PartsTest {
         parts.choosePartCategory("rims");
 
         ResultsPage results = parts.searchResults();
-        if(results.isEmpty())
-            System.out.println("Success");
-        else
-            System.out.println("Fail");
+        Assert.assertFalse(results.isEmpty(),"Result of search should not be empty");
     }
 }

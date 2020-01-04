@@ -26,15 +26,14 @@ public class MainPage{
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NullPointerException.class)
                 .ignoring(ClassCastException.class)
-        ;;
+        ;
     }
 
-    private By partsButtonSelector = new MobileBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"pl.otomoto:id/tab_category_text_view\").text(\"CZĘŚCI\")");
+    private static final By partsButtonSelector = new MobileBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"pl.otomoto:id/tab_category_text_view\").text(\"CZĘŚCI\")");
 
-    public PartsPage goToPartsPage(){
+    public PartsPage goToPartsPage() {
         wait.until(ExpectedConditions.presenceOfElementLocated(partsButtonSelector));
         driver.findElement(partsButtonSelector).click();
         return new PartsPage(driver);
     }
-
 }
